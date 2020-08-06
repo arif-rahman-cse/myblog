@@ -25,6 +25,10 @@ urlpatterns = [
         template_name='users/password_reset_complete.html'), name='password_reset_complete'),
 
     path('admin/', admin.site.urls),
+
+    # Rest API Url
+    path('api/', include('api.urls')),
+
 ]
 
 if settings.DEBUG:
