@@ -3,7 +3,7 @@ This is Blog App Developed by django and also developed REST API of this Blog so
 
 ## Blog Features:
   * CRUD functionality on a live website:
-    Create blog posts
-    Retrieve blog posts
-    Update blog posts
-    Delete blog posts
+     1. Create blog posts
+     2. Retrieve blog posts
+     3. Update blog posts
+     4. Delete blog posts
