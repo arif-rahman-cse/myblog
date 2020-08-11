@@ -1,7 +1,10 @@
 from rest_framework import status, generics
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view
+from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
 from api.serializers import PostSerializer
 from blog.models import Post
 
@@ -13,7 +16,7 @@ class PostAPIView(generics.ListAPIView):
 """
 
 
-# Function Base View for all post GET API
+# Function Base View for all blog post GET API
 @api_view(['GET', ])
 def api_blog_list(request):
     try:
@@ -26,7 +29,14 @@ def api_blog_list(request):
         return Response(serializer.data)
 
 
-# Class Base View for Single  Post GET Update And Delete API
-class PostAPIDetailView(generics.RetrieveUpdateDestroyAPIView):  # Get update and delete
+# Class Base View for Single  Blog Post GET Update And Delete API
+class APIBlogPostDetailView(generics.RetrieveUpdateDestroyAPIView):  # Get update and delete
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+# Post ListView Pagination
+class ApiBlogPostListView(ListAPIView):
+    queryset = Post.objects.all()  # It will get all the posts and pass through context through template
+    serializer_class = PostSerializer  # Set Serializer Class
+    pagination_class = PageNumberPagination  # Pagination Class

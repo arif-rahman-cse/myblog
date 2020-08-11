@@ -28,6 +28,7 @@ urlpatterns = [
 
     # Rest API Url
     path('api/', include('api.urls')),
+    path('api/account/', include('api.account.urls')),
 
 ]
 
