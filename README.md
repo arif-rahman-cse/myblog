@@ -15,3 +15,5 @@ This is Blog App Developed by django and also developed REST API of this Blog so
  * Pagination (very important for mobile apps)
  * Serialization of data
  * JSON Data
+ 
+ ## API Uses:
