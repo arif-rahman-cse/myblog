@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
+    {% if posts %}
     {% for post in posts%}
         <article class="media content-section">
              <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
@@ -13,6 +14,11 @@
           </div>
         </article>
     {% endfor %}
+    {% else %}
+        <div>
+            <h2>No Result found for this query! </h2>
+        </div>
+    {% endif %}
 
     {% if is_paginated %}
 

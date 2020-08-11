@@ -1,5 +1,6 @@
 import os
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -14,6 +15,10 @@ from .models import Post
 
 # Function base view
 def home(request):
+    print('Home Method')
+    if request.GET:
+        query = request.GET['q']
+        print("Query String: " + str(query))
     context = {
         'posts': Post.objects.all()
     }
@@ -89,3 +94,19 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+
+# Search Blog Post
+def get_blog_queryset(query=None):
+    queryset = []  # Empty List For Storing Search results
+    queries = query.split(" ")  # Python Install 2020 = [python, install, 2020]
+    for q in queries:
+        posts = Post.objects.filter(
+            Q(title__icontains=q) |
+            Q(content__icontains=q)
+        ).distinct()
+
+        for post in posts:
+            queryset.append(post)
+
+    return list(set(queryset))
