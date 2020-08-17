@@ -53,7 +53,7 @@ Vary: Accept
 
 ```
 
-### Blog Post API
+### Blog Post GET API
   --url 'http://127.0.0.1:8000/api/posts-list/'  
   --header 'Authorization: Token <<access_token>>' 
   
@@ -88,12 +88,15 @@ Vary: Accept
 }
 
 ```
-
-### Single Blog Post
+### Single Blog Post GET UPDATE DELETE API  
  --url http://127.0.0.1:8000/api/post/22  
 
-
 ```
+HTTP 200 OK
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
 {
     "id": 22,
     "title": "Top 10 Best Dummy Content (Lorem Ipsum) Generators WordPress Plugins",
