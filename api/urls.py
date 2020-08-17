@@ -10,5 +10,5 @@ urlpatterns = [
 
     # Url for function base View
     path('posts/', api_blog_list, name='api-blog-posts'),
-    path('posts/<int:pk>', APIBlogPostDetailView.as_view(), name='api-blog-post-list'),
+    path('post/<int:pk>', APIBlogPostDetailView.as_view(), name='api-blog-post-list'),
 ]
