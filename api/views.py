@@ -5,8 +5,8 @@ from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from api.serializers import PostSerializer
-from blog.models import Post
+from api.serializers import PostSerializer, TestPostSerializer
+from blog.models import Post, TestPost
 
 # Class Base View for all Post GET API
 """
@@ -37,8 +37,13 @@ class APIBlogPostDetailView(generics.RetrieveUpdateDestroyAPIView):  # Get updat
 
 
 # Post ListView Pagination
-class ApiBlogPostListView(ListAPIView,):
+class ApiBlogPostListView(ListAPIView, ):
     permission_classes = (IsAuthenticated,)  # Restrict  Post List API
     queryset = Post.objects.all()  # It will get all the posts and pass through context through template
     serializer_class = PostSerializer  # Set Serializer Class
     pagination_class = PageNumberPagination  # Pagination Class
+
+
+class APIBlogPostCreateView(generics.CreateAPIView):
+    queryset = TestPost.objects.all()
+    serializer_class = TestPostSerializer
